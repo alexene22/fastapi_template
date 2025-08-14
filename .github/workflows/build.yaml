@@ -4,9 +4,12 @@ on:
   pull_request:
     branches:
       - main
+      - feat/containarization_and_pipelines
+
   push:
     branches:
       - main
+      - feat/containarization_and_pipelines
     paths:
       - Dockerfile
       - pyproject.toml
