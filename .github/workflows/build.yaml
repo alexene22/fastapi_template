@@ -10,9 +10,9 @@ on:
       - main
       - feat/containarization_and_pipelines
     paths:
-      - Dockerfile
-      - pyproject.toml
-      - main.py
+    #   - Dockerfile
+    #   - pyproject.toml
+    #   - main.py
   workflow_dispatch:
 
 jobs:
