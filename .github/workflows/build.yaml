@@ -38,4 +38,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/devops_reddit_scrapper:0.0.1
+          tags: ${{ secrets.DOCKER_USERNAME }}/devops_reddit_scrapper:latest
