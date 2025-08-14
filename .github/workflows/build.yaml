@@ -1,18 +1,13 @@
 name: Build and Push Docker Image
 
 on:
-  pull_request:
-    branches:
-      - main
-      - feat/containarization_and_pipelines
   push:
     branches:
       - main
-      - feat/containarization_and_pipelines
     paths:
-    #   - Dockerfile
-    #   - pyproject.toml
-    #   - main.py
+      - Dockerfile
+      - pyproject.toml
+      - main.py
   workflow_dispatch:
 
 jobs:
@@ -38,4 +33,14 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/devops_reddit_scrapper:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/devops_reddit_scrapper:${{ github.sha }}
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: '${{ secrets.DOCKER_USERNAME }}/devops_reddit_scrapper:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
