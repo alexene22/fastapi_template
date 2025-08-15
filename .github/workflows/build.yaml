@@ -36,7 +36,7 @@ jobs:
           tags: ${{ secrets.DOCKER_USERNAME }}/devops_reddit_scrapper:${{ github.sha }}
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@0.32.0
         with:
           image-ref: '${{ secrets.DOCKER_USERNAME }}/devops_reddit_scrapper:${{ github.sha }}'
           format: 'table'
